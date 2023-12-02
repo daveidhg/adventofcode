@@ -87,7 +87,7 @@ class Solution {
 };
 
 int main() {
-    Solution solution = Solution("input.txt");
+    Solution solution = Solution("2023/01/input.txt");
     int partOne = solution.solvePartOne();
     int partTwo = solution.solvePartTwo();
     cout << "Part 1: " << partOne << endl;

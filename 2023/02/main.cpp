@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include <string>
 #include <fstream>
-#include <sstream>
 #include <math.h>
 using namespace std;
 
@@ -120,7 +119,7 @@ class Solution {
 };
 
 int main() {
-    Solution solution = Solution("input.txt");
+    Solution solution = Solution("2023/02/input.txt");
     int partOne = solution.solvePartOne();
     int partTwo = solution.solvePartTwo();
     cout << "Part one: " << partOne << endl;
