@@ -23,3 +23,8 @@ class Solution {
             }
         }
 };
+
+int main() {
+    Solution solution = Solution("year/day/input.txt");
+
+}
