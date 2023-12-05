@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <chrono>
 using namespace std;
 
 class Solution {
@@ -25,6 +26,8 @@ class Solution {
 };
 
 int main() {
+    auto start = chrono::high_resolution_clock::now();
     Solution solution = Solution("year/day/input.txt");
 
+    cout << "Time: " << chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - start).count() << " ms" << endl;
 }

@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <set>
+#include <chrono>
 using namespace std;
 
 class Solution {
@@ -155,6 +156,8 @@ class Solution {
 };
 
 int main() {
+    auto start = chrono::high_resolution_clock::now();
+
     Solution solution = Solution("2023/05/input.txt");
     unsigned int partOne = solution.solvePartOne();
 
@@ -163,4 +166,6 @@ int main() {
     unsigned int partTwo = solution.solvePartTwo(solution.solvePartTwo(solution.solvePartTwo(solution.solvePartTwo(0, 10000) - 10000, 1000) - 1000, 100) - 100, 1);
     cout << "Part one: " << partOne << endl;
     cout << "Part two: " << partTwo << endl;
+
+    cout << "Time: " << chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - start).count() << " ms" << endl;
 }
