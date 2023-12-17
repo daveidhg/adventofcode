@@ -65,43 +65,42 @@ class Solution {
         entryList.push({source, 0, {0, 0}, 0});
         while(!entryList.empty())
         {
-            entry current = entryList.top();
+            auto [coord, len, direction, sameDirection] = entryList.top();
             entryList.pop();
-            if (current.coord == target) {
-                return current.len;
+            if (coord == target) {
+                return len;
             }
 
-            if (visited.find({current.coord.first, current.coord.second, current.sameDirection, current.direction.first, current.direction.second}) != visited.end()) {
+            if (visited.find({coord.first, coord.second, sameDirection, direction.first, direction.second}) != visited.end()) {
                 continue;
             }
 
-            visited.insert({current.coord.first, current.coord.second, current.sameDirection, current.direction.first, current.direction.second});
-            pair<int, int> lastDirection = current.direction;
+            visited.insert({coord.first, coord.second, sameDirection, direction.first, direction.second});
 
-            for (pair<int, int> dir : dmove) 
+            for (pair<int, int> const &dir : dmove) 
             {
-                int sameDirection = current.sameDirection;
-                if (dir == lastDirection) {
-                    if (sameDirection == max) {
+                int sameDirectionCopy = sameDirection;
+                if (dir == direction) {
+                    if (sameDirectionCopy == max) {
                         continue;
                     }
-                    sameDirection++;
+                    sameDirectionCopy++;
                 }
-                else if ((dir.first + lastDirection.first) == 0 && (dir.second + lastDirection.second) == 0) {
+                else if ((dir.first + direction.first) == 0 && (dir.second + direction.second) == 0) {
                     continue;
                 }
-                else if (sameDirection >= min || sameDirection == 0){
-                    sameDirection = 1;
+                else if (sameDirectionCopy >= min || sameDirectionCopy == 0){
+                    sameDirectionCopy = 1;
                 }
                 else {
                     continue;
                 }
-                int y = current.coord.second + dir.second;
-                int x = current.coord.first + dir.first;
+                int y = coord.second + dir.second;
+                int x = coord.first + dir.first;
                 if (x <= 0 || x >= graph[0].size() || y < 0 || y >= graph.size()) {
                     continue;
                 }
-                entryList.push({{x, y}, current.len + graph[y][x], dir, sameDirection});
+                entryList.push({{x, y}, len + graph[y][x], dir, sameDirectionCopy});
             }
         }
         return {};
