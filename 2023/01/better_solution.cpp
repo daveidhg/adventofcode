@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
+#include <chrono>
 using namespace std;
 
 class Solution {
@@ -87,10 +88,11 @@ class Solution {
 };
 
 int main() {
+    auto start = chrono::high_resolution_clock::now();
     Solution solution = Solution("2023/01/input.txt");
     int partOne = solution.solvePartOne();
     int partTwo = solution.solvePartTwo();
     cout << "Part 1: " << partOne << endl;
     cout << "Part 2: " << partTwo << endl;
-    return 0;
+    cout << "Time: " << chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - start).count() << " ms" << endl;
 };

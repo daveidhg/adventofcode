@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 #include <math.h>
+#include <chrono>
+
 using namespace std;
 
 class Solution {
@@ -119,10 +121,11 @@ class Solution {
 };
 
 int main() {
+    auto start = chrono::high_resolution_clock::now();
     Solution solution = Solution("2023/02/input.txt");
     int partOne = solution.solvePartOne();
     int partTwo = solution.solvePartTwo();
     cout << "Part one: " << partOne << endl;
     cout << "Part two: " << partTwo << endl;
-    return 0;
+    cout << "Time: " << chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - start).count() << " ms" << endl;
 }
