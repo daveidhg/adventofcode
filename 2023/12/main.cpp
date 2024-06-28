@@ -71,7 +71,7 @@ class Solution {
             }
         }
 
-        long long countArrangements(string line, vector<int> nums) {
+        long long countArrangements(string line, vector<int>& nums) {
             long long result = 0;
             if (line.empty()) {
                 return nums.empty() ? 1 : 0;

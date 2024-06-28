@@ -118,7 +118,7 @@ class Solution {
             return {condition.substr(0, 2), condition.substr(2, colonIndex - 2), condition.substr(colonIndex + 1)};
         }
 
-        long long count(unordered_map<char, pair<int, int> > ranges, string label) {
+        long long count(unordered_map<char, pair<int, int> >& ranges, string label) {
             if (label[0] == 'R') {
                 return 0;
             }

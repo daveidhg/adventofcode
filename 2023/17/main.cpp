@@ -18,11 +18,15 @@ class Solution {
         }
 
         int partOne() {
-            return dijkstra(graph, {0, 0}, {graph[0].size() - 1, graph.size() - 1}, 1, 3);
+            pair<int, int> source = {0, 0};
+            pair<int, int> target = {graph[0].size() - 1, graph.size() - 1};
+            return dijkstra(graph, source, target, 1, 3);
         }
 
         int partTwo() {
-            return dijkstra(graph, {0, 0}, {graph[0].size() - 1, graph.size() - 1}, 4, 10);
+            pair<int, int> source = {0, 0};
+            pair<int, int> target = {graph[0].size() - 1, graph.size() - 1};
+            return dijkstra(graph, source, target, 4, 10);
         }
 
     private:
@@ -57,7 +61,7 @@ class Solution {
             }
         };
 
-    int dijkstra(vector<vector<int>> &graph, pair<int, int> source, pair<int, int> target, int min, int max)
+    int dijkstra(vector<vector<int>> &graph, pair<int, int>& source, pair<int, int>& target, int min, int max)
     {
 
         set<vector<int> > visited;

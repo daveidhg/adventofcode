@@ -68,7 +68,7 @@ class Solution {
             data.push_back(current);
         }
 
-        int isMirrorVertical(vector<string> note, int original) {
+        int isMirrorVertical(vector<string>& note, int original) {
             int left = 0;
             int right = note[0].length() - 1;
             vector<pair<int, int> > possibilities;
@@ -102,7 +102,7 @@ class Solution {
             return 0;
         }
 
-        bool isEqualVertical(vector<string> note, int left, int right) {
+        bool isEqualVertical(vector<string>& note, int left, int right) {
             for (int i = 0; i<note.size(); i++) {
                 if (note[i][left] != note[i][right]) {
                     return false;
@@ -111,7 +111,7 @@ class Solution {
             return true;
         }
 
-        int isMirrorHorizontal(vector<string> note, int original) {
+        int isMirrorHorizontal(vector<string>& note, int original) {
             int top = 0;
             int bottom = 1;
             vector<pair<int, int> > possibilities;
@@ -145,7 +145,7 @@ class Solution {
             return 0;
         }
 
-        bool isEqualHorizontal(vector<string> note, int top, int bottom) {
+        bool isEqualHorizontal(vector<string>& note, int top, int bottom) {
             for (int i = 0; i<note[0].length(); i++) {
                 if (note[top][i] != note[bottom][i]) {
                     return false;
