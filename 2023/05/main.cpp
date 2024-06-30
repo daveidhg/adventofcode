@@ -62,7 +62,7 @@ class Solution {
 
     
     private:
-        unsigned int getCorrespondingNumber(vector<vector<unsigned int> > map, unsigned int num){
+        unsigned int getCorrespondingNumber(vector<vector<unsigned int> > &map, unsigned int num){
             for (auto range : map) {
                 unsigned int lowerBound = range[1];
                 unsigned int upperBound = lowerBound + range[2] - 1;
@@ -74,7 +74,7 @@ class Solution {
             return num;
         }
 
-        unsigned int getCorrespondingNumberOpposite(vector<vector<unsigned int> > map, unsigned int num) {
+        unsigned int getCorrespondingNumberOpposite(vector<vector<unsigned int> > &map, unsigned int num) {
             for (auto range : map) {
                 unsigned int lowerBound = range[0];
                 unsigned int upperBound = lowerBound + range[2] - 1;

@@ -126,7 +126,7 @@ class Solution {
             return true;
         }
 
-        bool supportsFalling(unordered_set<int> &falling, unordered_set<int> isBeingSupportedBy) {
+        bool supportsFalling(unordered_set<int> &falling, unordered_set<int> &isBeingSupportedBy) {
             for (int i : isBeingSupportedBy) {
                 if (falling.find(i) == falling.end()) {
                     return false;

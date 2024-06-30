@@ -100,7 +100,7 @@ class Solution {
             }
         }
 
-        long long calculateGalaxyDistances(vector<pair<int, int> > galaxyCoordinates) {
+        long long calculateGalaxyDistances(vector<pair<int, int> > &galaxyCoordinates) {
             long long sum = 0;
             for (int i = 0; i<galaxyCoordinates.size() - 1; i++) {
                 for (int j = i + 1; j<galaxyCoordinates.size(); j++) {

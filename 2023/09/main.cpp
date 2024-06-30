@@ -16,7 +16,7 @@ class Solution {
         int solvePartOne() {
             int ans = 0;
             vector<vector<int> > sequences;
-            for (vector<int> row : data) {
+            for (vector<int> &row : data) {
                 sequences.push_back(row);
                 while (!onlyZeroes(sequences.back())){
                     sequences.push_back(findSequence(sequences.back()));
@@ -32,7 +32,7 @@ class Solution {
         int solvePartTwo() {
             int ans = 0;
             vector<vector<int> > sequences;
-            for (vector<int> row : data) {
+            for (vector<int> &row : data) {
                 sequences.push_back(row);
                 while (!onlyZeroes(sequences.back())) {
                     sequences.push_back(findSequence(sequences.back()));
@@ -70,7 +70,7 @@ class Solution {
             }
         }
 
-        vector<int> findSequence(vector<int> row) {
+        vector<int> findSequence(vector<int> &row) {
             vector<int> sequence;
             for (int i = 1; i<row.size(); i++) {
                 sequence.push_back(row[i] - row[i - 1]);
@@ -78,7 +78,7 @@ class Solution {
             return sequence;
         }
 
-        bool onlyZeroes(vector<int> nums) {
+        bool onlyZeroes(vector<int> &nums) {
             for (int num : nums) {
                 if (num != 0) {
                     return false;

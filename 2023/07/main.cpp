@@ -47,7 +47,7 @@ class Solution {
             // High card = 0, one pair = 1 etc. for sorting
             int jokerNum = 0;
             unordered_map<char, int> cardCount;
-            for (char card : hand) {
+            for (char &card : hand) {
                 cardCount[card]++;
             }
             if (jokers) {
@@ -106,7 +106,7 @@ class Solution {
                 }
                 else {
                     for (int i = 0; i<hand2.first.length(); i++) {
-                        for (char card : winningOrder) {
+                        for (char &card : winningOrder) {
                             if (hand1.first[i] == card && hand2.first[i] != card) {
                                 return false;
                             }
