@@ -3,11 +3,10 @@
 #include <string>
 #include <fstream>
 #include <chrono>
-using namespace std;
 
 class Solution {
     public:
-        vector<string> data;
+        std::vector<std::string> data;
     
         Solution(const char* filename) {
             getData(filename);
@@ -16,9 +15,9 @@ class Solution {
     
     private:
         void getData(const char* filename) {
-            ifstream inputFile;
+            std::ifstream inputFile;
             inputFile.open(filename);
-            string line;
+            std::string line;
             while (getline(inputFile, line)) {
                 data.push_back(line);
             }
@@ -26,8 +25,8 @@ class Solution {
 };
 
 int main() {
-    auto start = chrono::high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     Solution solution = Solution("year/day/input.txt");
 
-    cout << "Time: " << chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - start).count() << " ms" << endl;
+    std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count() << " ms" << std::endl;
 }
