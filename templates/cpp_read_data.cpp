@@ -12,6 +12,14 @@ class Solution {
             getData(filename);
         }
 
+        int partOne() {
+            return 0;
+        }
+
+        int partTwo() {
+            return 0;
+        }
+
     
     private:
         void getData(const char* filename) {
@@ -27,6 +35,8 @@ class Solution {
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
     Solution solution = Solution("year/day/input.txt");
+    std::cout << "Part One: " << solution.partOne() << std::endl;
+    std::cout << "Part Two: " << solution.partTwo() << std::endl;
 
     std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count() << " ms" << std::endl;
 }
