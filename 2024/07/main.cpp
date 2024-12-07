@@ -36,7 +36,7 @@ class Solution {
             [](long long a, long long b) { return a * b; }
         };
 
-        void getData(const char* filename) {
+        void getData(const char* filename) noexcept {
             std::ifstream inputFile;
             inputFile.open(filename);
             std::string line;
@@ -55,7 +55,7 @@ class Solution {
             }
         }
 
-        bool evaluate(std::vector<long long>& nums, long long target) {
+        bool evaluate(std::vector<long long>& nums, const long long& target) {
             if (nums.size() == 1) {
                 return nums[0] == target;
             }
