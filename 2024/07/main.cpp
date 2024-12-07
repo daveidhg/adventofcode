@@ -60,12 +60,15 @@ class Solution {
                 return nums[0] == target;
             }
             for (auto& operation : operations) {
-                long long value = operation(nums[0], nums[1]);
-                std::vector<long long> newNums = {value};
-                newNums.insert(newNums.end(), nums.begin() + 2, nums.end());
-                if (evaluate(newNums, target)) {
+                long long originalFirst = nums[0];
+                long long originalSecond = nums[1];
+                nums[0] = operation(originalFirst, originalSecond);
+                nums.erase(nums.begin() + 1);
+                if (evaluate(nums, target)) {
                     return true;
                 }
+                nums.insert(nums.begin() + 1, originalSecond);
+                nums[0] = originalFirst;
             }
             return false;
         }
