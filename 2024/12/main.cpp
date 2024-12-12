@@ -16,7 +16,6 @@ class Solution {
 
         int partOne() {
             int ans = 0;
-            auto regions = getRegions();
             for (auto& region : regions) {
                 ans += getArea(region) * getPerimeter(region);
             }
@@ -25,9 +24,8 @@ class Solution {
 
         int partTwo() {
             int ans = 0;
-            auto regions = getRegions();
             for (auto& region : regions) {
-                int area = getArea(region);
+                int area = getArea(region);               
                 int sides = getSides(region);
                 ans += area * sides;
             }
@@ -37,6 +35,7 @@ class Solution {
     
     private:
         std::vector<std::pair<int, int> > directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        std::vector<std::set<std::pair<int, int> > > regions;
         int width;
         int height;
 
@@ -47,11 +46,12 @@ class Solution {
             while (getline(inputFile, line)) {
                 data.push_back(line);
             }
+            getRegions();
         }
 
-        std::vector<std::set<std::pair<int, int> > > getRegions() {
+        void getRegions() {
             std::set<std::pair<int, int> > visited;
-            std::vector<std::set<std::pair<int, int> > > regions;
+            
             height = data.size();
             width = data[0].size();
             for (int y = 0; y < height; y++) {
@@ -81,14 +81,13 @@ class Solution {
                     regions.push_back(region);
                 }
             }
-            return regions;
         }
 
-        int getArea(std::set<std::pair<int, int> > region) {
+        int getArea(std::set<std::pair<int, int> >& region) {
             return region.size();
         }
 
-        int getPerimeter(std::set<std::pair<int, int> > region) {
+        int getPerimeter(std::set<std::pair<int, int> >& region) {
             int perimeter = 0; 
             auto& [x, y] = *region.begin();
             char plant = data[y][x];
@@ -104,7 +103,7 @@ class Solution {
             return perimeter;
         }
 
-        int getSides(std::set<std::pair<int, int> > region) {
+        int getSides(std::set<std::pair<int, int> >& region) {
             int sides = 0;
             std::set<std::pair<std::pair<int, int>, std::pair<int, int> > > edges;
             for (auto& [x, y] : region) {
