@@ -15,11 +15,7 @@ class Solution {
 
         int partOne() {
             executeInstructions();	
-            for (int i = 0; i < warehouse.size(); i++) {
-                std::cout << warehouse[i] << std::endl;
-            }
-            int ans = calculateCoordinates();
-            return ans;
+            return calculateCoordinates();
         }
 
     
