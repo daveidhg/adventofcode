@@ -4,9 +4,11 @@
 #include <fstream>
 #include <chrono>
 
+using namespace std;
+
 class Solution {
     public:
-        std::vector<std::string> data;
+        vector<string> data;
     
         Solution(const char* filename) {
             getData(filename);
@@ -23,9 +25,9 @@ class Solution {
     
     private:
         void getData(const char* filename) {
-            std::ifstream inputFile;
+            ifstream inputFile;
             inputFile.open(filename);
-            std::string line;
+            string line;
             while (getline(inputFile, line)) {
                 data.push_back(line);
             }
@@ -33,10 +35,15 @@ class Solution {
 };
 
 int main() {
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = chrono::high_resolution_clock::now();
+    Solution testSolution = Solution("year/day/testinput.txt");
     Solution solution = Solution("year/day/input.txt");
-    std::cout << "Part One: " << solution.partOne() << std::endl;
-    std::cout << "Part Two: " << solution.partTwo() << std::endl;
 
-    std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count() << " ms" << std::endl;
+    cout << "Test One: " << testSolution.partOne() << endl;
+    cout << "Test Two: " << testSolution.partTwo() << "\n\n";
+
+    cout << "Part One: " << solution.partOne() << endl;
+    cout << "Part Two: " << solution.partTwo() << endl;
+
+    cout << "Time: " << chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - start).count() << " ms" << endl;
 }
