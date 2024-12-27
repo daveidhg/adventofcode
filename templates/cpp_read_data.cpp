@@ -36,8 +36,8 @@ class Solution {
 
 int main() {
     auto start = chrono::high_resolution_clock::now();
-    Solution testSolution = Solution("year/day/testinput.txt");
-    Solution solution = Solution("year/day/input.txt");
+    Solution testSolution = Solution("testinput.txt");
+    Solution solution = Solution("input.txt");
 
     cout << "Test One: " << testSolution.partOne() << endl;
     cout << "Test Two: " << testSolution.partTwo() << "\n\n";
