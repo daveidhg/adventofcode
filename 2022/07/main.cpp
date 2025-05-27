@@ -15,6 +15,7 @@ struct file {
 struct directory {
     string name;
     directory* outerDir;
+    int totalSize;
     map<string, directory> subdirs;
     vector<file> files;
 };
@@ -31,7 +32,7 @@ class Solution {
         }
 
         int partOne() {
-            return 0;
+            return getAllSizesOverHundredThousand(root);
         }
 
         int partTwo() {
@@ -79,6 +80,28 @@ class Solution {
                     }
                 }
             }
+            getDirectorySize(root);
+        }
+
+        int getDirectorySize(directory &dir) {
+            for (file &f : dir.files) {
+                dir.totalSize += f.size;
+            }
+            if (dir.subdirs.size() != 0) {
+                for (auto &pair : dir.subdirs) {
+                    dir.totalSize += getDirectorySize(pair.second);
+                }
+            }
+            return dir.totalSize;
+        }
+
+        int getAllSizesOverHundredThousand(directory &dir) {
+            int total = 0;
+            for (auto &pair : dir.subdirs) {
+                if (pair.second.totalSize > 100000)
+                total += getAllSizesOverHundredThousand(pair.second);
+            }
+            return total;
         }
 
 };
