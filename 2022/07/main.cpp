@@ -15,7 +15,7 @@ struct file {
 struct directory {
     string name;
     directory* outerDir;
-    int totalSize;
+    int totalSize = 0;
     map<string, directory> subdirs;
     vector<file> files;
 };
@@ -25,6 +25,8 @@ class Solution {
     public:
         vector<string> terminalLines;
         directory root;
+        int targetSpace = 30000000;
+        int currentSpace;
     
         Solution(const char* filename) {
             getData(filename);
@@ -36,7 +38,7 @@ class Solution {
         }
 
         int partTwo() {
-            return 0;
+            return getSmallestCompatibleDir(root, root.totalSize);
         }
 
     
@@ -81,6 +83,7 @@ class Solution {
                 }
             }
             getDirectorySize(root);
+            currentSpace = 70000000 - root.totalSize;
         }
 
         int getDirectorySize(directory &dir) {
@@ -97,11 +100,26 @@ class Solution {
 
         int getAllSizesOverHundredThousand(directory &dir) {
             int total = 0;
+            if (dir.totalSize <= 100000) {
+                total += dir.totalSize;
+            }
             for (auto &pair : dir.subdirs) {
-                if (pair.second.totalSize > 100000)
                 total += getAllSizesOverHundredThousand(pair.second);
             }
             return total;
+        }
+
+        int getSmallestCompatibleDir(directory& dir, int currentBest) {
+            if (dir.totalSize + currentSpace < targetSpace) {
+                return currentBest;
+            }
+            if (dir.totalSize < currentBest) {
+                currentBest = dir.totalSize;
+            }
+            for (auto &pair : dir.subdirs) {
+                currentBest = getSmallestCompatibleDir(pair.second, currentBest);
+            }
+            return currentBest;
         }
 
 };
