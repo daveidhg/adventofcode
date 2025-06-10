@@ -4,6 +4,7 @@
 #include <fstream>
 #include <chrono>
 #include <functional>
+#include <numeric>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ class Solution {
     public:
         vector<Monkey> monkeys;
         vector<Monkey> monkeys2;
+        vector<int> lcms;
     
         Solution(const char* filename) {
             getData(filename);
@@ -96,6 +98,7 @@ class Solution {
                 
                 case 3:
                     monkey.test = stoi(line.substr(line.find_last_of(" ") + 1));
+                    lcms.push_back(stoi(line.substr(line.find_last_of(" ") + 1)));
                     break;
 
                 case 4:
@@ -122,6 +125,9 @@ class Solution {
                 item = monkey.operand(item);
                 if (part == 1) {
                     item = item / 3;
+                }
+                else {
+                    item = vector_lcm(lcms);
                 }
                 if (item % monkey.test == 0) {
                     next = monkey.ifTrue;
@@ -153,6 +159,14 @@ class Solution {
                 }
             }
             return (long long)highest * secondHighest;
+        }
+
+        int vector_lcm(vector<int> nums) {
+            int num = nums[0];
+            for (int i = 1; i<nums.size(); i++) {
+                num = lcm(num, nums[i]);
+            }
+            return num;
         }
 };
 
