@@ -38,9 +38,10 @@ class Solution {
         }
 
         long long partTwo() {
+            long long lcm_val = vector_lcm(lcms);
             for (int i = 0; i<10000; i++) {
                 for (Monkey &monkey : monkeys2) {
-                    doTurn(monkey, 2);
+                    doTurn(monkey, 2, lcm_val);
                 }
             }
             return calculateMostActiveMonkeys(monkeys2);
@@ -79,18 +80,18 @@ class Solution {
                         string last = line.substr(pos + 1);
                         if (last == "old") {
                             if (op == '+') {
-                                monkey.operand = [](int old) { return old + old; };
+                                monkey.operand = [](long long old) { return old + old; };
                             } 
                             else if (op == '*') {
-                                monkey.operand = [](int old) { return old * old; };
+                                monkey.operand = [](long long old) { return old * old; };
                             } 
                         } else {
                             int num = stoi(last);
                             if (op == '+') {
-                                monkey.operand = [num](int old) { return old + num; };
+                                monkey.operand = [num](long long old) { return old + num; };
                             } 
                             else if (op == '*') {
-                                monkey.operand = [num](int old) { return old * num; };
+                                monkey.operand = [num](long long old) { return old * num; };
                             } 
                         }
                     }
@@ -118,16 +119,16 @@ class Solution {
             monkeys2 = monkeys;
         }
 
-        void doTurn(Monkey &monkey, int part = 1) {
+        void doTurn(Monkey &monkey, int part = 1, long long lcm_val = 1) {
             int next;
-            for (long long item : monkey.startingItems) {
+            for (long long &item : monkey.startingItems) {
                 monkey.inspections++;
                 item = monkey.operand(item);
                 if (part == 1) {
                     item = item / 3;
                 }
                 else {
-                    item = vector_lcm(lcms);
+                    item %= lcm_val;
                 }
                 if (item % monkey.test == 0) {
                     next = monkey.ifTrue;
