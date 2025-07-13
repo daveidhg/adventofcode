@@ -8,8 +8,6 @@ using namespace std;
 
 class Solution {
     public:
-        vector<string> data;
-    
         Solution(const char* filename) {
             getData(filename);
         }
@@ -24,6 +22,7 @@ class Solution {
 
     
     private:
+        vector<string> data;
         void getData(const char* filename) {
             ifstream inputFile;
             inputFile.open(filename);
